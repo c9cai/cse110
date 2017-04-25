@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+    <!-- display service script -->
+    <script language="javascript" type="text/javascript" >
+    function displayTypeService() {
+        var url = "displayTypeService.php";
+        $.post(url, {username:'null'}, function(data) {
+            $("#myDiv").html(data).show();
+        });
+    }
+    
+    function addTypeService() {
+        var url = "addServiceType.php";
+        var serviceName = document.getElementById("newService").value;
+        var priceNum = document.getElementById("price").value;
+        $.post(url, {service:serviceName, price:priceNum}, function(data) {
+            $("#myDiv").html(data).show();
+        });
+    }
+    
+    function displayPackages() {
+        var url = "displayPackages.php";
+        $.post(url, {user:"null"}, function(data) {
+            $("#myDiv").html(data).show();
+        });
+    }
+    
+    function addServiceToPackage() {
+        var url = "addServiceToPackage.php";
+        var serviceName = document.getElementById("addService").value;
+        var packageName = document.getElementById("mypackage").value;
+        $.post(url, {service:serviceName, mypackage:packageName}, function(data) {
+            $("#myDiv").html(data).show();
+        });
+    }
+    </script>
+</head>
+<body>
+    <!-- <form action="addServiceType.php" method="post"> -->
+    <form action="javascript:addTypeService();" method="post">
+        
+        <label for="newService">New Service:</label>
+        <input type="text" name="newService" id="newService"/><br/>
+        
+        <label for="price">Price:</label>
+        <input type="text" name="price" id="price"/><br/>
+        
+        <input type="submit" value="Add new service"/>
+        
+    </form><br><br>
+    
+    <form action="javascript:addServiceToPackage();" method="post">
+        
+        <label for="addService">Service:</label>
+        <input type="text" name="addService" id="addService"/><br/>
+        
+        <label for="mypackage">Add to Package:</label>
+        <input type="text" name="mypackage" id="mypackage"/><br/>
+        
+        <input type="submit" value="Add to package"/>
+        
+    </form><br><br>
+    
+    <form action="javascript:displayTypeService();" method="post">
+        <input type="submit" value="Display Services"/>
+    </form>
+    
+    <form action="javascript:displayPackages();" method="post">
+        <input type="submit" value="Display Packages"/>
+    </form>
+    
+    <div id="myDiv"></div><br>
+</body>
+</html>

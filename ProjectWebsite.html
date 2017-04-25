@@ -1,0 +1,30 @@
+<script language="javascript">
+<!--//
+function pasuser(form) {
+  if (form.id.value=="User") { 
+    if (form.pass.value=="Pass") {              
+    location="LoginSuccess.html";
+    } else {
+    alert("Invalid Password");
+    }
+  } else {  alert("Invalid Username");
+    }
+  }
+//-->
+</script>
+
+<center>
+
+  <table bgcolor="white" cellpadding="5">
+    <tr><td>Username:</td>
+      <td><form name="login"><input name="id" type="text"></td></tr>
+    
+    <tr><td>Password:</td>
+      <td><input name="pass" type="password"></td></tr>
+    
+    <tr><td><center><input type="button" value="Login"
+    onClick="pasuser(this.form)"></center></td>
+      <td colspan="2">&nbsp;</td></tr>
+  </table>
+
+</center> 

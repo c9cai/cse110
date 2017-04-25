@@ -1,0 +1,92 @@
+<!DOCTYPE html>
+<html>
+
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+<!-- display service script -->
+<script language="javascript" type="text/javascript" >
+    function displayServices() {
+        var user = localStorage.getItem('username');
+        var url = "displayCustomerServices.php";
+        $.post(url, {username:user}, function(data) {
+            $("#myDiv").html(data).show();
+        });
+    }
+
+    function addService() {
+	var user = document.getElementById("addName").value;
+	var serviceToAdd = document.getElementById("addServiceName").value;
+        var url = "addService.php";
+        $.post(url, {username:user,servicename:serviceToAdd}, function(data) {
+            $("#success").html(data).show();
+        });
+	$("#myDiv").hide();
+    }
+
+    function deleteService() {
+	var user = document.getElementById("deleteName").value;
+	var serviceToDelete = document.getElementById("deleteServiceName").value;
+        var url = "deleteService.php";
+        $.post(url, {username:user, servicename:serviceToDelete}, function(data) {
+            $("#success").html(data).show();
+        });
+	$("#myDiv").hide();
+    }
+
+</script>
+
+	<h2 style = "text-align:center;">Customer Service Representative</h3>
+		<br>
+		<br>
+	
+	<style>
+	.options {
+		background-color: #FF66CC;
+		color:white;
+		margin:20px;
+		padding:20px;
+	}
+	</style>
+		
+        <div id="success"></div><br>
+
+	<div id="add" class="options">
+		<h2>Add Service for Specified Customer</h2>
+		<form action="javascript:addService();"	method="post">
+		<p>Services include internet, phone, and utilities.</p>
+		<p>Username:  <input type="text" id="addName"></p>
+		<p>Service:  <input type="text" id="addServiceName"></p>
+		<input type='submit' value="Add Service"/>
+		</form>
+	</div>	
+
+	<div id="delete" class="options">
+                <h2>Delete Service for Specified Customer</h2>
+		<form action="javascript:deleteService();" method="post">
+                <p>Services include internet, phone, and utilities.</p>
+                <p>Username:  <input type="text" id="deleteName"></p>
+                <p>Service:  <input type="text" id="deleteServiceName"></p>
+                <input type='submit' value="Delete Service"/>
+		</form>
+        </div>
+        
+	<div id="myDiv"></div><br>
+
+	<form action="javascript:displayServices();" method="post">
+        <input type = "submit" value="Display all customer services"/>
+        </form> 
+
+
+	<script type="text/javascript" 
+	src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	
+	<script>
+		$(document)ready(function() {
+			$('#display').load('displayCustomerServices.php');
+		
+						
+
+		});
+	</script>
+	<div id="display"></div>
+</html>

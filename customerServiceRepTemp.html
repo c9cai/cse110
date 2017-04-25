@@ -1,0 +1,23 @@
+<html>
+<head>
+<script type="text/javascript" 
+        src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+<script language="javascript" type="text/javascript">
+function swapContent(cv){
+	var url = "customerServiceRep.php";
+	$.post(url,{contentVar: cv} ,function(data) {
+		$("#myDiv").html(data).show();
+	});
+}
+</script>
+</head>
+<body>
+	<a href="#" onClick="return false" onmousedown="javascript:swapContent('con1');">Content1</a> &nbsp; &bull; &nbsp;
+	<a href="#" onClick="return false" onmousedown="javascript:swapContent('con2');">Content2</a> &nbsp; &bull; &nbsp;
+	<a href="#" onClick="return false" onmousedown="javascript:swapContent('con3');">Content3</a>
+	<br>
+	<br>
+	<br>
+	<div id="myDiv">My default content 1</div>
+</body>
+</html>

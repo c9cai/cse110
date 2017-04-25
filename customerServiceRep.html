@@ -1,0 +1,189 @@
+<html lang="en">
+
+<head>
+
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+	<!-- display service script -->
+	<script language="javascript" type="text/javascript" >
+		function displayServices() {
+			var user = localStorage.getItem('username');
+			var url = "displayCustomerServices.php";
+			$.post(url, {username:user}, function(data) {
+				$("#myDiv").html(data).show();
+			});
+		}
+
+		function addService() {
+		var user = document.getElementById("addName").value;
+		var serviceToAdd = document.getElementById("addServiceName").value;
+			var url = "addService.php";
+			$.post(url, {username:user,servicename:serviceToAdd}, function(data) {
+				$("#success").html(data).show();
+			});
+		$("#myDiv").hide();
+		}
+
+		function deleteService() {
+		var user = document.getElementById("deleteName").value;
+		var serviceToDelete = document.getElementById("deleteServiceName").value;
+			var url = "deleteService.php";
+			$.post(url, {username:user, servicename:serviceToDelete}, function(data) {
+				$("#success").html(data).show();
+			});
+		$("#myDiv").hide();
+		}
+
+		 function addPackage() {
+                var user = document.getElementById("packageName").value;
+                var name = document.getElementById("pack").value;
+                        var url = "addPackage.php";
+                        $.post(url, {username:user, servicename:name}, function(data) {
+                                $("#success").html(data).show();
+                        });
+                $("#myDiv").hide();
+                }
+
+		function removePackage() {
+                var user = document.getElementById("removepackageName").value;
+                var name = document.getElementById("removepack").value;
+                        var url = "addPackage.php";
+                        $.post(url, {username:user, servicename:name}, function(data) {
+                                $("#success").html(data).show();
+                        });
+                $("#myDiv").hide();
+                }
+
+
+	</script>
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>Test Page</title>
+
+		<!-- Bootstrap Core CSS -->
+		<link href="css/bootstrap.css" rel="stylesheet">
+
+		<!-- Custom CSS -->
+		<link href="css/sb-admin.css" rel="stylesheet">
+
+		<!-- Custom Fonts -->
+		<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+	
+<body class="pages">
+	
+	<div id="page-wrapper">
+
+		<div class="container-fluid">
+
+			<!-- Page Heading -->
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">
+						Customer Service.
+						<small>Admin Panel.</small>
+					</h1>
+					<ol class="breadcrumb">
+						<li>
+							<i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+						</li>
+						<li class="active">
+							<i class="fa fa-file"></i> Blank Page
+						</li>
+					</ol>
+				</div>
+			</div>
+			<!-- /.row -->
+
+		
+        <div id="success"></div><br>
+	<div align="center">
+	<div id="add">
+		<h2>Add Service for Specified Customer</h2>
+		<form action="javascript:addService();"	method="post">
+		<p>Services include internet, phone, and utilities.</p>
+		<p>Username:  <input type="text" id="addName"></p>
+		<p>Service:  <input type="text" id="addServiceName"></p>
+		<input type='submit' value="Add Service"/>
+		</form>
+	</div>	
+
+	<div id="delete">
+                <h2>Delete Service for Specified Customer</h2>
+		<form action="javascript:deleteService();" method="post">
+                <p>Services include internet, phone, and utilities.</p>
+                <p>Username:  <input type="text" id="deleteName"></p>
+                <p>Service:  <input type="text" id="deleteServiceName"></p>
+                <input type='submit' value="Delete Service"/>
+		</form>
+        </div>
+
+	<div id="addPackage">
+                <h2>Add Package for Specified Customer</h2>
+                <form action="javascript:addPackage();" method="post">
+                <p>Username:  <input type="text" id="packageName"></p>
+                <p>Package:  <input type="text" id="pack"></p>
+                <input type='submit' value="Add Package"/>
+                </form>
+        </div>
+        
+	<div id="removePackage">
+                <h2>Delete Package for Specified Customer</h2>
+                <form action="javascript:removePackage();" method="post">
+                <p>Username:  <input type="text" id="removepackageName"></p>
+                <p>Package:  <input type="text" id="removepack"></p>
+                <input type='submit' value="Remove Package"/>
+                </form>
+        </div>
+
+
+	<div id="myDiv"></div><br>
+
+	<form action="javascript:displayServices();" method="post">
+        <input type = "submit" value="Display all customer services"/>
+        </form> 
+
+
+	<script type="text/javascript" 
+	src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+	
+	<script>
+		$(document)ready(function() {
+			$('#display').load('displayCustomerServices.php');
+		
+						
+
+		});
+	</script>
+	<div id="display"></div>
+	</div>
+	
+		</div>
+		<!-- /.container-fluid -->
+
+    </div>
+
+	
+	<!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>

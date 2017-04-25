@@ -1,0 +1,208 @@
+<html lang="en">
+
+<head>
+
+	<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/2.0.0/jquery.min.js"></script>
+
+	<!-- display service script -->
+	<script language="javascript" type="text/javascript" >
+		function displayService() {
+			var user = localStorage.getItem('username');
+			var url = "displayServices.php";
+			$.post(url, {username:user}, function(data) {
+				$("#myDiv").html(data).show();
+			});
+		}
+
+		function displayPackage() {
+                        var user = localStorage.getItem('username');
+                        var url = "displayUserPackages.php";
+                        $.post(url, {username:user}, function(data) {
+                                $("#myDiv").html(data).show();
+                        });
+                }
+
+		
+		function deleteService() {
+			var user = localStorage.getItem('username');
+			var serviceToDelete = document.getElementById("deleteServiceName").value;
+			var url = "deleteService.php";
+			$.post(url, {username:user, servicename:serviceToDelete}, function(data) {
+				$("#myDiv").html(data).show();
+			});
+		}
+		
+		function addService() {
+			var user = localStorage.getItem('username');
+			var serviceToAdd = document.getElementById("addServiceName").value;
+			var url = "addService.php";
+			$.post(url, {username:user, servicename:serviceToAdd}, function(data) {
+				$("#myDiv").html(data).show();
+			});
+		}
+
+		function setBalance() {
+                        var user = localStorage.getItem('username');
+                        var balance = document.getElementById("setThresh").value;
+                        var url = "setBalance.php";
+                        $.post(url, {username:user, balance:balance}, function(data) {
+                                $("#myDiv").html(data).show();
+                        });
+                }
+
+		 function addPackage() {
+                        var user = localStorage.getItem('username');
+                        var servicename = document.getElementById("addPackageName").value;
+                        var url = "addPackage.php";
+                        $.post(url, {username:user, servicename:servicename}, function(data) {
+                                $("#myDiv").html(data).show();
+                        });
+                }
+
+		function removePackage() {
+                        var user = localStorage.getItem('username');
+                        var servicename = document.getElementById("removePackageName").value;
+                        var url = "removePackage.php";
+                        $.post(url, {username:user, servicename:servicename}, function(data) {
+                                $("#myDiv").html(data).show();
+                        });
+                }
+
+		function seeBill() {
+			var user = localStorage.getItem('username');
+			var url = "seeBill.php";
+			$.post(url, {username: user}, function(data) {
+				$("#billDiv").html(data).show();
+			});
+		}
+	</script>
+
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<meta name="viewport" content="width=device-width, initial-scale=1">
+		<meta name="description" content="">
+		<meta name="author" content="">
+
+		<title>Test Page</title>
+
+		<!-- Bootstrap Core CSS -->
+		<link href="css/bootstrap.css" rel="stylesheet">
+
+		<!-- Custom CSS -->
+		<link href="css/sb-admin.css" rel="stylesheet">
+
+		<!-- Custom Fonts -->
+		<link href="font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+		<!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+		<!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+		<!--[if lt IE 9]>
+			<script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+			<script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+		<![endif]-->
+
+</head>
+	
+<body class="pages">
+	
+	<div id="page-wrapper">
+
+		<div class="container-fluid">
+
+			<!-- Page Heading -->
+			<div class="row">
+				<div class="col-lg-12">
+					<h1 class="page-header">
+						Customer.
+						<small>Things.</small>
+					</h1>
+					<ol class="breadcrumb">
+						<li>
+							<i class="fa fa-dashboard"></i>  <a href="index.html">Dashboard</a>
+						</li>
+						<li class="active">
+							<i class="fa fa-file"></i> Blank Page
+						</li>
+					</ol>
+				</div>
+			</div>
+			<!-- /.row -->
+		  <!-- link to display services in div -->
+		  <div align="center">
+		  
+			<!--<a href="#" onClick="return false" onmousedown="javascript:displayService();">Display Services</a>-->
+			<form action="javascript:displayService();" method="post">     
+				<input type="submit" value="Display Services"/>      
+			</form>
+			<br>
+			<form action="javascript:displayPackage();" method="post">
+                                <input type="submit" value="Display Packages"/>
+                        </form>
+
+			<div id="myDiv">Click above to display services/packages, use below forms to delete or add services/packages</div><br>
+			
+			<!-- delete service form -->
+			<form action="javascript:addService();" method="post">
+				<label for="addServiceName">Service to Add:</label>
+				<input type="text" name="addServiceName" id="addServiceName" onclick="this.select();"/><br/>
+				
+				<input type="submit" value="Add"/>      
+			</form><br>
+			
+			<form action="javascript:deleteService();" method="post">
+				<label for="deleteServiceName">Service to Remove:</label>
+				<input type="text" name="deleteServiceName" id="deleteServiceName" onclick="this.select();"/><br/>
+				
+				<input type="submit" value="Remove"/>      
+			</form>
+			
+			<!-- add service form -->
+			<br>
+			 <form action="javascript:addPackage();" method="post">
+                                <label for="addPackageName">Package to Add:</label>
+                                <input type="text" name="addPackageName" id="addPackageName" onclick="this.select();"/><br/>
+
+                                <input type="submit" value="Add"/>
+                        </form><br>
+
+			 <form action="javascript:removePackage();" method="post">
+                                <label for="removePackageNameName">Package to Remove:</label>
+                                <input type="text" name="removePackageName" id="removePackageName" onclick="this.select();"/><br/>
+
+                                <input type="submit" value="Remove"/>
+                        </form><br>
+
+
+			<form action="javascript:setBalance();" method="post">
+                                <label for="setThreshold">Set Balance Notification Threshold as:</label>
+                                <input type="text" name="setThresh" id="setThresh" onclick="this.select();"/><br/>
+
+                                <input type="submit" value="Set"/>
+                        </form><br>
+		
+			<form action="javascript:seeBill();" method="post">
+				<input type = "submit" value ="See Bill"/>
+			</form><br>
+
+			<div id = "billDiv"></div>
+
+		
+			
+	
+			</div>
+			
+		</div>
+		<!-- /.container-fluid -->
+
+    </div>
+
+	
+	<!-- jQuery -->
+    <script src="js/jquery.js"></script>
+
+    <!-- Bootstrap Core JavaScript -->
+    <script src="js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
